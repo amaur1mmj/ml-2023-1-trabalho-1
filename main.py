@@ -35,13 +35,12 @@ def drop_columns(data, n,m =111):
     
     temp = data
     for i in range(n,m):
-    
+        
         new_data = temp.drop([temp.columns[i]], axis=1)
         temp =  new_data
-        print(new_data.head(-5))
-        m -=1 
-        print(m)
         
+        print(i)
+        m -=1
 
     return new_data
     
