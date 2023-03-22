@@ -1,66 +1,45 @@
 import pandas as pd
-import numpy as np 
+import matplotlib.pyplot as pyplot 
+import seaborn as sns
 
 pd.options.display.max_rows = 99
 # pd.options.display.max_columns = 9
 
 dataframe = pd.read_excel('dataset.xlsx')
 
-# print(dataframe.head(10))
+dataframe.describe()
+print(dataframe)
+
+# Vendo os valores para tratamento do dataframe 
+
+# def dt_results(dataframe,columns=50): 
+#     k = 0
+#     for i in range(columns):
+#         test = pd.isnull(dataframe[dataframe.columns[i]])
+#         for j in range(len(dataframe[dataframe.columns[i]])):
+#             if test[j] != True:
+#                 valor = dataframe[dataframe.columns[i]].values[j]
+#                 # print(valor)
+#                 k += 1
+#     return k
 
 
-#print(dataframe.columns)
-
-
-
-# for t in test:
-#     if (t != True ):
-#         print(dataframe['Hematocrit'])
-# k = 0
-
-def dt_results(dataframe,columns=50): 
-    k = 0
-    for i in range(columns):
-        test = pd.isnull(dataframe[dataframe.columns[i]])
-        for j in range(len(dataframe[dataframe.columns[i]])):
-            if test[j] != True:
-                valor = dataframe[dataframe.columns[i]].values[j]
-                # print(valor)
-                k += 1
-    return k
-
-
-
-def drop_columns(data, n,m =111):
-    
-    temp = data
-    for i in range(n,m):
-        
-        new_data = temp.drop([temp.columns[i]], axis=1)
-        temp =  new_data
-        
-        print(i)
-        m -=1
+# excluindo colunas desnecessárias
+def drop_columns(data):   
+    new_data = data.drop(data.columns[59:], axis=1)
 
     return new_data
     
-    
-    
+new_data = drop_columns(dataframe)
+#new_data.to_excel('sem_valores_NaN2.xlsx')
+#print(dt_results(new_data,59))
+print(new_data)
+print(new_data.describe())
+
+sns.boxplot(data=new_data, x= "Patient age quantile", y = "SARS-Cov-2 exam result")
+pyplot.show()
 
 
-# dt_full_valores = dataframe.dropna(how='all')
-# print(dt_full_valores.head())
-
-# kn = dt_results(dataframe,111)
-#print(kn)
-
-# m = dt_results(dt_full_valores,111)
-# print(m)
-
-dt_full_valores = drop_columns(dataframe,60)
-print(dt_full_valores)
-
-#dt_full_valores.to_excel('sem_valores_NaN2.xlsx')
  
 
     
