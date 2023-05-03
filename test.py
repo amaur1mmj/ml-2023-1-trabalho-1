@@ -5,3 +5,10 @@ for i in range(-8,-1):
     
 # for j in range(1,9):
 #     print(t[j])
+
+x = None
+
+if x: 
+    print('pika')
+else:
+    print('rola')
